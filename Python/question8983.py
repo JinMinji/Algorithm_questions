@@ -1,6 +1,6 @@
 # 20210524 사냥꾼
 
-def lower_bound(animal):
+def lower_bound(animal):    # nlogn
     x, y = animal
     start = 0
     end = len(loc) - 1
@@ -15,7 +15,7 @@ def lower_bound(animal):
 def hunting():
     result = 0
     # animals_loc.sort(key=lambda x:x[0])
-    for ani in animals_loc:
+    for ani in animals_loc: #n
         i = lower_bound(ani)
         if abs(ani[0]-loc[i])+ani[1] <= L:
             result += 1
