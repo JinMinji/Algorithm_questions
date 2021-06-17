@@ -8,6 +8,7 @@ def isPossible(x,y):    # 범위 검사
     return 0<=x<R and 0<=y<C
 
 def how_far(num, start, visited):       # 현재까지의 이동횟수, 현재위치, 방문한 알파벳 내역
+    global max_dist
     i, j = start    # 현재위치부터 상, 하, 좌, 우
     for k in range(4):
         x = i + dx[k]
@@ -16,11 +17,10 @@ def how_far(num, start, visited):       # 현재까지의 이동횟수, 현재�
             if board[x][y] not in visited:    # xy좌표 기준으로 방문여부는 안해줘도 당연함.
                 visited.append(board[x][y])
                 num += 1
-                num = how_far(num, [x,y], visited)
-            else:
+                max_dist = max(max_dist, num)
+                how_far(num, [x,y], visited)
                 visited.pop()
-                max_dist = max(num, max_dist)
-                break
+                num -= 1
 
 if __name__ == '__main__':
     R, C = map(int, input().split(" "))
@@ -29,14 +29,12 @@ if __name__ == '__main__':
     for i in range(R):
         board.append(input())
 
-    max_dist = 0
+    global max_dist
+    max_dist = 1
     dist_list = list()
     visited_alpha = list()
     visited_alpha.append(board[0][0])   # 맨 첫번째에서 시작
 
-    global max_dist
-    max_dist = 0
+    how_far(1,[0,0],visited_alpha)      # 맨 첫번째 칸부터! 칸 수는 1, 위치는 [0][0], 방문한알파벳은 board[0][0]
 
-    result = how_far(1,[0,0],visited_alpha)      # 맨 첫번째 칸부터! 칸 수는 1, 위치는 [0][0], 방문한알파벳은 board[0][0]
-
-    print(result)
+    print(max_dist)

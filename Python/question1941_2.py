@@ -12,17 +12,24 @@ def isPossible(x,y):
     return 0<=x<5 and 0<=y<5
 
 def isConnected(graph):
-    for g in graph:
-        isConnect = False
-        i, j = g
+    start = graph[0]
+    to_visit = list()
+    to_visit.append(start)
+    visited = [start]
+
+    while to_visit:
+        i, j = to_visit.pop(0)
         for _ in range(4):
             x = i + dx[_]
-            y = i + dy[_]
-            if [x,y] in graph:
-                isConnect = True
-        if isConnect == False:
-            return False
-    return True
+            y = j + dy[_]
+            if isPossible(x,y) and [x,y] in graph and [x,y] not in visited:
+                to_visit.append([x,y])
+                visited.append([x,y])
+
+    if len(visited) == 7:
+        return True
+    else:
+        return False
 
 
 if __name__ == '__main__':

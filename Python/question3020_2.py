@@ -1,20 +1,12 @@
 # 20210601 개똥벌레
+import bisect
+import sys
+input = sys.stdin.readline
 
 def find_min(h):
-    up_num = lower_bound(h, cave_up)
-    down_num = lower_bound(H-h-1, cave_down)
+    up_num = len(cave_up) - bisect.bisect_right(cave_up, h)
+    down_num = len(cave_down) - bisect.bisect_right(cave_down, H-h-1)
     return up_num + down_num
-
-def lower_bound(h, height_list):
-    start = 0
-    end = len(height_list)-1
-    while start <= end:
-        mid = (start + end) // 2
-        if height_list[mid] <= h:
-            start = mid+1
-        else:
-            end = mid-1
-    return len(height_list[end+1:])
 
 if __name__ == '__main__':
     N, H = map(int, input().split(" "))
@@ -33,6 +25,7 @@ if __name__ == '__main__':
 
     result = N
     cnt = 0
+
     for i in range(H):
         tmp = find_min(i)
         if tmp < result:
