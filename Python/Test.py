@@ -1,16 +1,6 @@
-def lower_bound(h, height_list):
-    start = 0
-    end = len(height_list)
-    while start <= end:
-        mid = (start + end) // 2
-        if height_list[mid] <= h:
-            start = mid+1
-        else:
-            end = mid-1
-    return len(height_list[end:])
+from itertools import combinations
 
-N, M = 3, 5
+temp_list = [i for i in range(1, 21)]
 
-melting_cnt = [[0 for i in range(M)] for j in range(N)]
-
-print(melting_cnt)
+picks = list(combinations(temp_list, 2))
+print(len(picks))

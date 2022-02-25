@@ -3,8 +3,6 @@ nums = [0,1,2,3,4,5,6,7,8,9]
 
 def is_consistent(nlist):
     for i in range(len(nlist)):
-        
-
 
 
     return True
