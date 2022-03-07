@@ -7,7 +7,6 @@ if __name__ == '__main__':
     # 주어진 행과 열을 기준으로 자르기 위해서 최소로 필요한 정사각형의 크기 구하기
     cur_i = max(abs(r1), abs(r2), abs(c1), abs(c2))
     cur_j = cur_i
-    # print(cur_i, cur_j)
 
     width = max(cur_i, cur_j) * 2 + 1
 
@@ -19,16 +18,15 @@ if __name__ == '__main__':
 
     inc = 0
     end = 0
+    direction = 1
 
     while inc <= len(paper)-1:
         inc += 1
-        # print("inc : ", inc, "cur_val : ", cur_val)
         # 반시계방향
-        # →
+        # →, ←
         for j in range(inc):
-            cur_j += 1
-            # print('→', cur_i, cur_j)
-            if cur_j >= len(paper):
+            cur_j += 1*direction
+            if cur_j < 0 or cur_j >= len(paper):
                 end = 1
                 break
             paper[cur_i][cur_j] = cur_val
@@ -36,45 +34,17 @@ if __name__ == '__main__':
 
         if end:
             break
-        # ↑
+
+        direction *= -1
+
+        # ↑, ↓
         for i in range(inc):
-            cur_i -= 1
-            # print('↑', cur_i, cur_j)
-            if cur_i < 0:
+            cur_i += 1*direction
+            if cur_i < 0 or cur_i >= len(paper):
                 end = 1
                 break
             paper[cur_i][cur_j] = cur_val
             cur_val += 1
-
-        inc += 1
-        # print("inc : ", inc, "cur_val : ", cur_val)
-
-        if end:
-            break
-        # ←
-        for j in range(inc):
-            cur_j -= 1
-            # print('←', cur_i, cur_j)
-            if cur_j < 0:
-                end = 1
-                break
-            paper[cur_i][cur_j] = cur_val
-            cur_val += 1
-
-        if end:
-            break
-        # ↓
-        for i in range(inc):
-            cur_i += 1
-            # print('↓', cur_i, cur_j)
-            if cur_i >= len(paper):
-                end = 1
-                break
-            paper[cur_i][cur_j] = cur_val
-            cur_val += 1
-
-        if end:
-            break
 
     max_len = len(str(cur_val))
 
