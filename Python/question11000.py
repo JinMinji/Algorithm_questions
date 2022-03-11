@@ -7,11 +7,17 @@ if __name__ == '__main__':
     lectures = list()
 
     for _ in range(N):
-        heapq.heappush(lectures, (map(int, input().split(' '))))
+        s, e = map(int, input().split(' '))
+        heapq.heappush(lectures, (s, e))
 
     result = list()
-    cur_time = 0
 
     while lectures:
-        next_lec = heapq.heappush(lectures)
-        if result
+        next_lec = list(heapq.heappop(lectures))
+        # print(result, lectures, next_lec)
+        if result and result[0] <= next_lec[0]:
+            heapq.heappop(result)
+
+        heapq.heappush(result, next_lec[1])     # 끝나는시간
+
+    print(len(result))
