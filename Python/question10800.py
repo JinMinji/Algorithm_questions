@@ -36,7 +36,7 @@ if __name__ == '__main__':
         colors_total[c][0] = s
 
         pre = s
-        colors_total[c][2]+= s
+        colors_total[c][2] += s
         cur_total += s
 
     for i in range(N):
