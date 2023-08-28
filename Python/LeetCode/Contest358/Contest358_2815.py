@@ -4,7 +4,17 @@ from typing import List
 
 class Solution:
     def maxSum(self, nums: List[int]) -> int:
+        answer = -1
+        max_nums = [[] for i in range(10)]
+        for i in range(len(nums)):
+            max_nums[int(max(str(nums[i])))].append(nums[i])
 
+        for i in range(len(max_nums)):
+            max_nums[i].sort(reverse=True)
+            if len(max_nums[i]) > 1:
+                answer = max(answer, max_nums[i][0] + max_nums[i][1])
+
+        return answer
 
 
 if __name__ == "__main__":
