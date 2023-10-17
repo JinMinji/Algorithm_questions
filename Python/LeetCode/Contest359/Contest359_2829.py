@@ -1,4 +1,4 @@
-# Contest358, Q2
+# Contest359, Q2
 
 class Solution:
     def minimumSum(self, n: int, k: int) -> int:

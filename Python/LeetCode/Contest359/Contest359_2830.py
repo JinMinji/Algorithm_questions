@@ -1,4 +1,4 @@
-# Contest358, Q3
+# Contest359, Q3
 
 from typing import List
 
@@ -6,8 +6,13 @@ class Solution:
     def maximizeTheProfit(self, n: int, offers: List[List[int]]) -> int:
         answer = 0
 
+        # 범위가 너무 크당 이거 그리디인가..?
+
+
+
 
         return answer
+
 
 if __name__ == "__main__":
     test = Solution()
