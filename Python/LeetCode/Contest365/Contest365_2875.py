@@ -5,8 +5,9 @@ from typing import List
 class Solution:
     def minSizeSubarray(self, nums: List[int], target: int) -> int:
         target %= sum(nums)
+        answer = 0
         for i in range(len(nums)):
-            
+            pass
         return answer
         
 if __name__ == "__main__":
